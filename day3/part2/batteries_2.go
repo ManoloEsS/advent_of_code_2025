@@ -6,12 +6,14 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"time"
 )
 
 const input = "input.txt"
 
 func main() {
-	var joltages []int
+	start := time.Now()
+	var joltages int
 
 	f, err := os.Open(input)
 	if err != nil {
@@ -45,13 +47,15 @@ func main() {
 		if err != nil {
 			log.Fatalf("could not convert lineJoltage to int: %s", err)
 		}
-		joltages = append(joltages, intLineJoltage)
+		joltages += intLineJoltage
 	}
 
-	totalJoltage := 0
-	for _, j := range joltages {
-		totalJoltage += j
-	}
+	// totalJoltage := 0
+	// for _, j := range joltages {
+	// 	totalJoltage += j
+	// }
 
-	fmt.Println(totalJoltage)
+	fmt.Println(joltages)
+	elapsed := time.Since(start)
+	fmt.Printf("Program took: %s\n", elapsed)
 }
