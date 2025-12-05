@@ -10,6 +10,7 @@ import (
 
 const input = "input.txt"
 
+// TODO: modify for using queue approach to check only modifiable positions and its potentially modifiable neighbors
 func main() {
 	start := time.Now()
 	var grid [][]rune
