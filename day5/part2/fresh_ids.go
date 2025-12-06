@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"slices"
-	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -48,9 +47,6 @@ func main() {
 			ranges = append(ranges, nums)
 			continue
 		}
-		sort.Slice(ranges, func(i, j int) bool {
-			return ranges[i][0] < ranges[j][0]
-		})
 
 		extended := false
 		var toDeleteQueue []int
@@ -87,8 +83,9 @@ func main() {
 }
 
 func prependInt(x []int, y int) []int {
-	x = append(x, 0)
-	copy(x[1:], x)
-	x[0] = y
-	return x
+	result := make([]int, len(x)+1)
+	result[0] = y
+	copy(result[1:], x)
+	return result
 }
+
